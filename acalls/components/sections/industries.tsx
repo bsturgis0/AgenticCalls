@@ -48,8 +48,8 @@ export function Industries() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {industries.map((industry, index) => (
             <div key={index} className="p-6 rounded-xl border bg-card hover:bg-accent transition-colors">
-              <div className="w-12 h-12 rounded-lg bg-[#00FF8C]/10 flex items-center justify-center mb-4">
-                <industry.icon className="w-6 h-6 text-[#00FF8C]" />
+              <div className="w-12 h-12 rounded-lg bg-cyan-500/10 flex items-center justify-center mb-4">
+                <industry.icon className="w-6 h-6 text-cyan-500" />
               </div>
               <h3 className="text-xl font-semibold mb-2">{industry.title}</h3>
               <p className="text-muted-foreground">{industry.description}</p>
@@ -58,7 +58,7 @@ export function Industries() {
         </div>
 
         <div className="text-center">
-          <Button size="lg" className="bg-[#00FF8C] text-black hover:bg-[#00FF8C]/90">
+          <Button size="lg" className="bg-cyan-500 text-black hover:bg-cyan-400">
             Start Free Trial
           </Button>
         </div>

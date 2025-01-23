@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.1.7"
+  }
+}

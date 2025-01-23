@@ -1,9 +1,22 @@
+//calls/components/dashboard/sidebar.tsx
 "use client"
 
+import { useRouter } from "next/navigation"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { BarChart, Phone, History, Settings, Users, MessageSquare, LogOut } from "lucide-react"
+import { BarChart, Phone, History, Settings, Users, MessageSquare, LogOut, ChevronLeft } from "lucide-react"
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+  SidebarTrigger,
+} from "@/components/ui/sidebar"
+import { Button } from "@/components/ui/button"
 
 const sidebarLinks = [
   {
@@ -40,43 +53,54 @@ const sidebarLinks = [
 
 export function DashboardSidebar() {
   const pathname = usePathname()
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    // Add your logout logic here
+    // For example:
+    // await signOut()
+    router.push("/login")
+  }
 
   return (
-    <div className="flex flex-col w-64 border-r border-cyan-500/20 bg-black/80">
-      <div className="p-6">
-        <Link href="/" className="flex items-center space-x-2">
-          <div className="relative">
-            <div className="absolute -inset-1 bg-cyan-500 rounded-full blur opacity-40"></div>
-            <Phone className="h-6 w-6 text-cyan-500 relative" />
-          </div>
-          <span className="font-bold text-white">Agentic Calls</span>
-        </Link>
-      </div>
-      <nav className="flex-1 px-4 pb-4">
-        {sidebarLinks.map((link) => {
-          const isActive = pathname === link.href
-          return (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={cn(
-                "flex items-center space-x-2 px-3 py-2 rounded-lg mb-1 transition-colors",
-                isActive ? "bg-cyan-500/10 text-cyan-500" : "text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5",
-              )}
-            >
-              <link.icon className="h-5 w-5" />
-              <span>{link.title}</span>
-            </Link>
-          )
-        })}
-      </nav>
-      <div className="p-4 border-t border-cyan-500/20">
-        <button className="flex items-center space-x-2 px-3 py-2 w-full rounded-lg text-gray-400 hover:text-cyan-400 hover:bg-cyan-500/5 transition-colors">
+    <Sidebar>
+      <SidebarHeader className="border-b border-cyan-500/20 p-4">
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center space-x-2">
+            <div className="relative">
+              <div className="absolute -inset-1 bg-cyan-500 rounded-full blur opacity-40"></div>
+              <Phone className="h-6 w-6 text-cyan-500 relative" />
+            </div>
+            <span className="font-bold">Agentic Calls</span>
+          </Link>
+          <SidebarTrigger />
+        </div>
+      </SidebarHeader>
+      <SidebarContent>
+        <SidebarMenu>
+          {sidebarLinks.map((link) => (
+            <SidebarMenuItem key={link.href}>
+              <SidebarMenuButton asChild isActive={pathname === link.href} tooltip={link.title}>
+                <Link href={link.href} className="flex items-center gap-2">
+                  <link.icon className="h-5 w-5" />
+                  <span>{link.title}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+      <SidebarFooter className="border-t border-cyan-500/20 p-4">
+        <Button
+          variant="ghost"
+          className="w-full justify-start gap-2 text-red-500 hover:text-red-600 hover:bg-red-500/10"
+          onClick={handleLogout}
+        >
           <LogOut className="h-5 w-5" />
           <span>Logout</span>
-        </button>
-      </div>
-    </div>
+        </Button>
+      </SidebarFooter>
+    </Sidebar>
   )
 }
 
