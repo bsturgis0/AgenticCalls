@@ -12,7 +12,7 @@ const useCases = [
   {
     title: "Appointment Scheduling",
     description: "Automate appointment booking and confirmation calls across multiple time zones",
-    image: "/placeholder.svg",
+    image: "/appointment.jpg",
   },
   {
     title: "Lead Qualification",

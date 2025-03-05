@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { DemoCall } from "@/components/demo-call"
 import { motion } from "framer-motion"
+import { TypedText } from "@/components/ui/typed-text"
 
 export function Hero() {
   return (
@@ -26,25 +27,39 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-5xl font-bold tracking-tight sm:text-6xl mb-6 bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 bg-gradient-to-br from-white to-gray-400 bg-clip-text text-transparent">
             Voice AI tech is ready to handle phone calls and behave like{" "}
-            <span className="text-cyan-500 inline-block animate-pulse">real people</span>
+            <span className="text-cyan-500 inline-block">
+              <TypedText
+                words={[
+                  "real people",
+                  "customer support",
+                  "property owners",
+                  "lead qualifiers",
+                  "sales agents",
+                  "appointment setters",
+                ]}
+                typingSpeed={80}
+                deletingSpeed={40}
+                delayBetweenWords={2000}
+              />
+            </span>
           </h1>
-          <p className="text-xl text-gray-400 mb-8">
+          <p className="text-lg md:text-xl text-gray-400 mb-8">
             Be among the first to take advantage of our revolutionary AI voice agents
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <Button
               size="lg"
-              className="bg-cyan-500 text-black hover:bg-cyan-400 hover:scale-105 transition-all hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
+              className="w-full sm:w-auto bg-cyan-500 text-black hover:bg-cyan-400 hover:scale-105 transition-all hover:shadow-[0_0_30px_rgba(6,182,212,0.5)]"
             >
               Try Demo
             </Button>
             <Button
               size="lg"
               variant="outline"
-              className="border-cyan-500 text-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400"
+              className="w-full sm:w-auto border-cyan-500 text-cyan-500 hover:bg-cyan-500/10 hover:text-cyan-400"
             >
               Watch Video
             </Button>
@@ -71,4 +86,3 @@ export function Hero() {
     </section>
   )
 }
-
